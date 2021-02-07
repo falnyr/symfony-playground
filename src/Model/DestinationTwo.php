@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-class FooDTO
+class DestinationTwo
 {
-    public ?string $theFoo;
+    public string $quxAttribute;
 }

@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\FooDTO;
-use App\Model\FooRequest;
+use App\Model\DestionationOne;
+use App\Model\SourceOne;
+use App\Model\SourceTwo;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,15 +21,19 @@ class ModelsController extends AbstractController
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
 
-        $req = new FooRequest();
-        $req->foo = 'hello';
-        $req->bar = 'hi';
+        $src2 = new SourceTwo();
+        $src2->qux = 'howdy';
+
+        $src = new SourceOne();
+        $src->nested = $src2;
+        $src->foo = 'hello';
+        $src->bar = 'hi';
 
         $serializer = new Serializer($normalizers, $encoders);
-        $data = $serializer->normalize($req);
-        $dto = $serializer->denormalize($data, FooDTO::class);
+        $data = $serializer->normalize($src);
+        $dest = $serializer->denormalize($data, DestionationOne::class);
 
-        dump($dto);
+        dump($dest);
 
         return new Response();
     }
