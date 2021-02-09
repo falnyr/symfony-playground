@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  dev:
+    image: falnyr/php:8.0-nginx-laravel-mysql-dev
+    container_name: sf-dev
+    volumes:
+      - .:/app/
+    ports:
+      - 8000:80

@@ -5,7 +5,7 @@ namespace App\Model;
 
 class SourceOne
 {
-    public ?string $foo;
+    public ?string $foo = '[undefined]';
     public string $bar;
     public SourceTwo $nested;
 }
